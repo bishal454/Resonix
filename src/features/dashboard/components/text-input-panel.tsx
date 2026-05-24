@@ -6,7 +6,7 @@ import { Coins } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 import { Button } from "@/components/ui/button"
-import { TEXT_MAX_LENGTH } from "@/features/text-to-speech/data/constants"
+import { COST_PER_UNIT, TEXT_MAX_LENGTH } from "@/features/text-to-speech/data/constants"
 import { Textarea } from "@/components/ui/textarea"
 
 export function TextInputPanel() {
@@ -34,7 +34,12 @@ export function TextInputPanel() {
             {/* Standard classes like rounded-4xl use CSS calc() which doesn't align cleanly at corners. */}
             <div className="rounded-[20px] bg-[#F9F9F9] p-1">
                 <div className="space-y-4 rounded-2xl bg-white p-4 drop-shadow-xs">
+                <label htmlFor="tts-input" className="sr-only">
+                      Text to convert to speech
+                   </label>
+                    
                     <Textarea
+                     id="tts-input"
                         placeholder="Start typing or paste your text here..."
                         className="min-h-35 resize-none border-0 bg-transparent p-0 shadow-none focus-visible:ring-0"
                         value={text}
@@ -55,7 +60,7 @@ export function TextInputPanel() {
                                     <>
 
                                         <span className="tabular-nums">
-                                            ₹{(text.length * 0.008).toFixed(4)}
+                                            ₹{(text.length * COST_PER_UNIT).toFixed(4)}
 
                                         </span>{" "}
                                         estimated

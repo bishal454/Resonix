@@ -51,20 +51,24 @@ export const WavyBackground = ({
     }
   };
 
-  const init = () => {
-    canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
-    w = ctx.canvas.width = window.innerWidth;
-    h = ctx.canvas.height = window.innerHeight;
-    ctx.filter = `blur(${blur}px)`;
-    nt = 0;
-    window.onresize = function () {
-      w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
-      ctx.filter = `blur(${blur}px)`;
-    };
-    render();
-  };
+   const init = () => {
+        canvas = canvasRef.current;
+        if (!canvas) return null;
+        ctx = canvas.getContext("2d");
+        if (!ctx) return null;
+  
+        const onResize = () => {
+          w = ctx.canvas.width = window.innerWidth;
+          h = ctx.canvas.height = window.innerHeight;
+          ctx.filter = `blur(${blur}px)`;
+        };
+    
+        onResize();
+        nt = 0;
+        window.addEventListener("resize", onResize);
+        render();
+        return onResize;
+      };
 
   const waveColors = colors ?? [
     "#38bdf8",
@@ -98,9 +102,10 @@ export const WavyBackground = ({
   };
 
   useEffect(() => {
-    init();
+    const onResize = init();
     return () => {
       cancelAnimationFrame(animationId);
+      if (onResize) window.removeEventListener("resize", onResize);
     };
   }, []);
 

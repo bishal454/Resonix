@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --spacing-105: 26.25rem;
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-sans: var(--font-inter);
