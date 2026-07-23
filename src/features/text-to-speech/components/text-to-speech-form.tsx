@@ -39,9 +39,7 @@ export function TextToSpeechForm({
     validators: {
       onSubmit: ttsFormSchema,
     },
-    onSubmit: async () => {
-      console.log();
-    },
+    onSubmit: async () => {},
   });
 
   return <form.AppForm> {children}</form.AppForm>;

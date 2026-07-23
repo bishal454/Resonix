@@ -47,3 +47,6 @@ next-env.d.ts
 
 #these are for  types safety
 #these are bunch of types whch are read from our schema
+
+
+/scripts/system-voices
