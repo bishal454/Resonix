@@ -1,13 +1,16 @@
 "use client";
 
+import { useStore } from "@tanstack/react-form";
+
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
-import { sliders } from "@/features/text-to-speech/data/sliders";
 import { useTypedAppFormContext } from "@/hooks/use-app-form";
-import { useStore } from "@tanstack/react-form";
-import { ttsFormOptions } from "./text-to-speech-form";
 
-export function SettingsPanelSettigs() {
+import { ttsFormOptions } from "@/features/text-to-speech/components/text-to-speech-form";
+import { VoiceSelector } from "@/features/text-to-speech/components/voice-selector";
+import { sliders } from "@/features/text-to-speech/data/sliders";
+
+export function SettingsPanelSettings() {
   const form = useTypedAppFormContext(ttsFormOptions);
   const isSubmitting = useStore(form.store, (s) => s.isSubmitting);
 
@@ -15,10 +18,7 @@ export function SettingsPanelSettigs() {
     <>
       {/* Voice Style Dropdown Section */}
       <div className="border-b border-dashed p-4">
-        <p className="text-sm text-muted-foreground">
-          voice selector coming soon
-        </p>
-        {/* <VoiceSelector /> */}
+        <VoiceSelector />
       </div>
 
       {/* Voice Adjustments Section */}
@@ -37,8 +37,6 @@ export function SettingsPanelSettigs() {
                       {slider.rightLabel}
                     </span>
                   </div>
-
-                  {/* //it is multie valsue system so we need only one first value */}
                   <Slider
                     value={[field.state.value]}
                     onValueChange={(value) => field.handleChange(value[0])}
@@ -46,9 +44,7 @@ export function SettingsPanelSettigs() {
                     max={slider.max}
                     step={slider.step}
                     disabled={isSubmitting}
-                    className="**:data-[slot=slider-thumb]:size-3
-                     **:data-[slot=slider-thumb]:bg-foreground
-                     **:data-[slot=slider-track]:h-1"
+                    className="**:data-[slot=slider-thumb]:size-3 **:data-[slot=slider-thumb]:bg-foreground **:data-[slot=slider-track]:h-1"
                   />
                 </Field>
               )}
@@ -58,4 +54,4 @@ export function SettingsPanelSettigs() {
       </div>
     </>
   );
-}
+};
