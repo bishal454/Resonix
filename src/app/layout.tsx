@@ -1,9 +1,9 @@
+import { TRPCReactProvider } from "@/trpc/client";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "sonner";
-import {ClerkProvider} from "@clerk/nextjs";
-
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default:"Resonix",
-    template:"%s | Resonix",
+    default: "Resonix",
+    template: "%s | Resonix",
   },
-  description: "AI- powered  voice cloning and text-to-speech platform ",
+  description: "AI-powered voice cloning and text-to-speech platform",
 };
 
 export default function RootLayout({
@@ -30,15 +30,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-<html lang="en">
-      <body
-        className={`${inter.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <Toaster/>
-      </body>
-    </html>
+      <TRPCReactProvider>
+        <html lang="en">
+          <body
+            className={`${inter.variable} ${geistMono.variable} antialiased`}
+          >
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </TRPCReactProvider>
     </ClerkProvider>
-    
   );
 }
