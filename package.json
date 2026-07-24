@@ -20,6 +20,7 @@
     "@hookform/resolvers": "^5.4.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.4.1",
+    "@sentry/nextjs": "^10.68.0",
     "@supabase/supabase-js": "^2.110.8",
     "@t3-oss/env-nextjs": "^0.13.11",
     "@tanstack/react-form": "^1.32.0",
