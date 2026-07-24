@@ -39,7 +39,7 @@ export async function deleteAudio(key: string): Promise<void> {
   }
 }
 
-export async function getSignedAudiUrl(
+export async function getSignedAudioUrl(
   key: string
 ): Promise<string> {
   const { data, error } = await supabase.storage
