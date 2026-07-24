@@ -1,8 +1,9 @@
+import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/client";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
-import { Toaster } from "sonner";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,10 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Resonix",
-    template: "%s | Resonix",
+    default: "Resonance",
+    template: "%s | Resonance"
   },
-  description: "AI-powered voice cloning and text-to-speech platform",
+  description: "AI-powered text-to-speech and voice cloning platform",
 };
 
 export default function RootLayout({
@@ -35,7 +36,9 @@ export default function RootLayout({
           <body
             className={`${inter.variable} ${geistMono.variable} antialiased`}
           >
-            {children}
+            <NuqsAdapter>
+              {children}
+            </NuqsAdapter>
             <Toaster />
           </body>
         </html>
